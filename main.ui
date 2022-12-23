@@ -11,14 +11,28 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Генерация фильмов</string>
+   <string>coffee</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_3">
+   <layout class="QGridLayout" name="gridLayout_4">
     <item row="0" column="0">
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0" rowspan="2" colspan="3">
+      <item row="1" column="0" rowspan="2" colspan="3">
        <widget class="QTableWidget" name="tableWidget"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string>добавить</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="text">
+         <string>изменить</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
