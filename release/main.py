@@ -4,6 +4,8 @@ from PyQt5.QtCore import Qt
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMessageBox, QInputDialog
 from PyQt5.QtWidgets import QMainWindow, QTableWidgetItem
+from main1 import Ui_MainWindow
+from addEditCoffeeForm import Ui_MainWindow as addEditCoffeeForm
 
 
 def log_uncaught_exceptions(ex_cls, ex, tb):
@@ -15,11 +17,11 @@ def log_uncaught_exceptions(ex_cls, ex, tb):
 sys.excepthook = log_uncaught_exceptions
 
 
-class MyWidget(QMainWindow):
+class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi("main.ui", self)
-        self.con = sqlite3.connect("coffee.sqlite")
+        self.setupUi(self)
+        self.con = sqlite3.connect("data\coffee.sqlite")
         self.update_result()
         self.modified = {}
         self.titles = None
@@ -88,16 +90,16 @@ class MyWidget(QMainWindow):
         self.modified.clear()
 
 
-class asking(QMainWindow):
+class asking(QMainWindow, addEditCoffeeForm):
     def __init__(self):
         super().__init__()
-        uic.loadUi("addEditCoffeeForm.ui", self)
+        self.setupUi(self)
 
 
-class editing(QMainWindow):
+class editing(QMainWindow, addEditCoffeeForm):
     def __init__(self, cur, row):
         super().__init__()
-        uic.loadUi("addEditCoffeeForm.ui", self)
+        self.setupUi(self)
         zapr = "SELECT * FROM coffee WHERE id = ?"
         edt = cur.execute(zapr, (row,)).fetchall()
         self.lineEdit.setText(edt[0][1])
@@ -119,3 +121,4 @@ if __name__ == '__main__':
     ex = MyWidget()
     ex.show()
     sys.exit(app.exec())
+
